@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 public record BetalingsverplichtingIngetrokken(String eventId,
                                                LocalDate eventDate,
+                                               String verplichtingsnummer,
                                                String betalingskenmerk) implements Event {
 
     public EventType eventType() {

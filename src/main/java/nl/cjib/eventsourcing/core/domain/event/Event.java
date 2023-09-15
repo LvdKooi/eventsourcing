@@ -9,4 +9,6 @@ public interface Event {
     LocalDate eventDate();
 
     EventType eventType();
+
+    String verplichtingsnummer();
 }

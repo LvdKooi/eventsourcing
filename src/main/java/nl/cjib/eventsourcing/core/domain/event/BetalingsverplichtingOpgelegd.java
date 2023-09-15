@@ -5,12 +5,12 @@ import java.time.LocalDate;
 
 public record BetalingsverplichtingOpgelegd(String eventId,
                                             LocalDate eventDate,
+                                            String verplichtingsnummer,
                                             String betalingskenmerk,
                                             LocalDate vervalDatum,
                                             String omschrijving,
                                             String betaalwijze,
-                                            BigDecimal bedrag,
-                                            String verplichtingsnummer
+                                            BigDecimal bedrag
 ) implements Event {
 
     public EventType eventType() {

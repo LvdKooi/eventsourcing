@@ -7,6 +7,10 @@ import nl.cjib.eventsourcing.core.domain.event.BetalingsverplichtingIngetrokken;
 import nl.cjib.eventsourcing.core.domain.event.BetalingsverplichtingOpgelegd;
 import nl.cjib.eventsourcing.core.domain.event.Event;
 import nl.cjib.eventsourcing.core.domain.event.FinancieleVerplichtingOpgelegd;
+import nl.cjib.eventsourcing.infrastructure.entity.BetalingsverplichtingIngetrokkenEntity;
+import nl.cjib.eventsourcing.infrastructure.entity.BetalingsverplichtingOpgelegdEntity;
+import nl.cjib.eventsourcing.infrastructure.entity.EventEntity;
+import nl.cjib.eventsourcing.infrastructure.entity.FinancieleVerplichtingOpgelegdEntity;
 import org.mapstruct.AfterMapping;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
@@ -65,4 +69,25 @@ public interface Mapper {
         return null;
     }
 
+    BetalingsverplichtingIngetrokken map(BetalingsverplichtingIngetrokkenEntity model);
+
+    BetalingsverplichtingOpgelegd map(BetalingsverplichtingOpgelegdEntity model);
+
+    FinancieleVerplichtingOpgelegd map(FinancieleVerplichtingOpgelegdEntity model);
+
+    default Event map(EventEntity event) {
+        if (event instanceof BetalingsverplichtingIngetrokkenEntity bvi) {
+            return map(bvi);
+        }
+
+        if (event instanceof BetalingsverplichtingOpgelegdEntity bvo) {
+            return map(bvo);
+        }
+
+        if (event instanceof FinancieleVerplichtingOpgelegdEntity fvo) {
+            return map(fvo);
+        }
+
+        return null;
+    }
 }

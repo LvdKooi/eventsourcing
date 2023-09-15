@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import lombok.Data;
 import nl.cjib.eventsourcing.core.domain.event.EventType;
-import nl.cjib.eventsourcing.core.domain.event.FinancieleVerplichtingOpgelegd;
 
 import java.time.LocalDate;
 
@@ -29,4 +28,6 @@ public abstract class EventDTO {
     private LocalDate eventDate;
 
     private EventType eventType;
+
+    private String verplichtingsnummer;
 }

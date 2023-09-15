@@ -27,7 +27,7 @@ class FinancieleVerplichtingAggregatorTest {
 
     @Test
     void happyFlow_eenAantalEventsWarenNaPeilDatum() {
-        var uitkomst = FinancieleVerplichtingAggregator.aggregateEvents(referenceSet(), LocalDate.of(2023,5,31));
+        var uitkomst = FinancieleVerplichtingAggregator.aggregateEvents(referenceSet(), LocalDate.of(2023, 5, 31));
 
         assertThat(uitkomst).isNotNull();
         assertThat(uitkomst.openstaandSaldo()).isEqualTo(BigDecimal.valueOf(11300));
@@ -40,10 +40,11 @@ class FinancieleVerplichtingAggregatorTest {
         return Set.of(
                 new FinancieleVerplichtingOpgelegd("EVENT1", LocalDate.of(2023, 5, 1), "VERPLICHTINGSNUMMER1", "Verkeersboete", BigDecimal.valueOf(10400)),
                 new FinancieleVerplichtingOpgelegd("EVENT2", LocalDate.of(2023, 5, 1), "VERPLICHTINGSNUMMER1", "Administratiekosten", BigDecimal.valueOf(900)),
-                new BetalingsverplichtingOpgelegd("EVENT3", LocalDate.of(2023, 5, 1), "BETALINGSKENMERK", LocalDate.of(2023, 6, 1), "Direct betalen", "CONTANT", BigDecimal.valueOf(11300), "VERPLICHTINGSNUMMER1"),
+                new BetalingsverplichtingOpgelegd("EVENT3", LocalDate.of(2023, 5, 1), "VERPLICHTINGSNUMMER1", "BETALINGSKENMERK", LocalDate.of(2023, 6, 1), "Direct betalen", "CONTANT", BigDecimal.valueOf(11300)),
                 new FinancieleVerplichtingOpgelegd("EVENT4", LocalDate.of(2023, 6, 1), "VERPLICHTINGSNUMMER1", "Kosten eerste aanmaning", BigDecimal.valueOf(5200)),
-                new BetalingsverplichtingIngetrokken("EVENT5", LocalDate.of(2023, 6, 1), "BETALINGSKENMERK"),
-                new BetalingsverplichtingOpgelegd("EVENT3", LocalDate.of(2023, 6, 1), "BETALINGSKENMERK2", LocalDate.of(2023, 6, 1), "Direct betalen", "CONTANT", BigDecimal.valueOf(16500), "VERPLICHTINGSNUMMER1")
+                new BetalingsverplichtingIngetrokken("EVENT5", LocalDate.of(2023, 6, 1), "VERPLICHTINGSNUMMER1", "BETALINGSKENMERK"),
+                new BetalingsverplichtingOpgelegd("EVENT3", LocalDate.of(2023, 6, 1), "VERPLICHTINGSNUMMER1", "BETALINGSKENMERK2", LocalDate.of(2023, 6, 1), "Direct betalen", "CONTANT", BigDecimal.valueOf(16500)
+                )
         );
     }
 }
